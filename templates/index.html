@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<br>
+<h1><center>Beginner Band Instrument Calculator</center></h1>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+
+        <form class="form-group" action="/" method="POST">
+            <div>
+                <h5><strong>Enter your number of beginners:</strong></h5>
+                <br>
+                <input type="number" id="number" name="number" min="20" max="500" value="100">
+                <br>
+                <br>
+                <h5><strong>Choose your instrumentation:</strong></h5>
+                <br>
+                <input type="radio" id="full" name="type" value="full" checked="checked" ><label for="full"><strong>&nbspFull Instrumentation</strong></label>
+                <p>Flute, Oboe, Bassoon, <br>
+                    Clarinet, Bass Clarinet, Alto Sax, <br>
+                    Tenor Sax, Bari Sax, Trumpet, <br>
+                    French Horn, Trombone, Euphonium, <br>
+                    Tuba, Percussion</p>
+                <br>
+
+                <input type="radio" id="reduced" name="type" value="reduced"><label for="reduced"><strong>&nbspReduced Instrumentation</strong></label>
+                <p>Flute, Clarinet, Alto Sax, <br>
+                    Trumpet, Trombone, Euphonium, <br>
+                    Percussion</p>
+                <br>
+
+                <input type="radio" id="category" name="type" value="category"><label for="category"><strong>&nbspCategorical Instrumentation</strong></label>
+                <p>Flute, Single Reeds, <br>
+                    High Brass, Low Brass, <br>
+                    Percussion</p>
+                <br>
+
+                <center><input type="submit"></center>
+            </div>
+        </form>
+
+    </div>
+        <div class="col">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for msg in messages %}
+                        <p>{{msg | safe}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+  </div>
+</div>
+
+<script>
+
+    const numInputs = document.querySelectorAll('input[type=number]')
+
+    numInputs.forEach(function(input) {
+      input.addEventListener('change', function(e) {
+        if (e.target.value == '') {
+          e.target.value = 0
+        }
+      })
+    })
+
+</script>
+
+{% endblock %}
